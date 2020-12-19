@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Admin</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }
+            
+        </style>
+    </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+    <body>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br><br><br>
+            <font color="black" size="5">
+                <u><b>Department Library Database</b></u>
+            </font>
+        </p>
+        <p><br><br><br>
+            <font size="5" color="blue">
+                WELCOME ADMIN!!
+            </font><br>
+            <font size="4" color="blue">
+                Click on the operation you want to perform
+            </font>
+        </p>
+        </center><br><br><br>
+        <div id="admin_user_ops" style="margin-top: 50px; margin-left: 350px; ">
+            <div>
+                <input type="submit" id="login" value="Add User" onclick="adduser()" /><br>
+            </div>
+            <div>
+                <input type="submit" id="login" value="Remove User" onclick="removeuser()" /><br>
+            </div>
+            <div>
+                <input type="submit" id="login" value="View Users" onclick="viewusers()" /><br>
+            </div>
+            <div>
+                <input type="submit" id="login" value="User history" onclick="userhistory()" /><br>
+            </div>
+        </div>
+        <div id="admin_book_ops" style="margin-top: 50px; margin-left: 350px; ">
+            <div>
+                <input type="submit" id="login" value="Add Book" onclick="addbook()" /><br>
+            </div>
+            <div>
+                <input type="submit" id="login" value="Remove Book" onclick="removebook()" /><br>
+            </div>
+            <div>
+                <input type="submit" id="login" value="View Books" onclick="viewbooks()" /><br>
+            </div>
+            <div>
+                <input type="submit" id="login" value="Books History" onclick="bookshistory()" /><br>
+            </div>
+        </div>
+    </body>
+    <script>
+        function addbook(){
+            location.href="{{ url_for('addbook') }}"
+        }
+    </script>
+</html>

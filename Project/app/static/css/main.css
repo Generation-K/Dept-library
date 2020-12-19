@@ -1,0 +1,117 @@
+body{
+	background:white;
+	height:700px;
+	margin:0px;
+	padding:0px;	
+}
+.base{
+	position:absolute;
+	width:100%;
+	top:0px;
+	left:0px;
+	color:grey;
+}
+#logo{
+	
+	margin-top:20px;	
+	height:38px;
+}
+#info1{
+	margin-top:10px;
+	font-family: "Open Sans";
+	font-size:30px;
+	font-weight:bold;
+	color:#00008B;	
+}
+#info2{
+	margin-top:10px;
+	font-family: "Open Sans";
+	font-size:30px;
+	font-weight:bold;
+	color:#8B0000;	
+}
+#info3{
+	margin-top:25px;
+	font-size:15px;
+	font-family: "Open Sans";
+	font-weight:bold;
+	color:#000000;
+}
+#form1{
+	margin-top:17px;
+	width:355px;
+	height:375px;
+    padding-top:40px;
+	background:#f7f7f7;
+	box-shadow: 0px 1px 1px 1px #c6c1c1;
+}
+#form-img{
+	width:99px;
+	height:99px;
+}
+#mailbox{
+	width:270px;
+	height:40px;
+	border-radius:5px 5px 5px 5px;
+	background:white;
+	font-size:18px;
+	margin-top:20px;
+	border-width: 0px;
+	border-style:solid;
+	border-color: blue;
+}
+#login{
+	width:270px;
+	height:35px;
+	margin-top:10px;
+	background:#498af2;
+	font-family:verdana;
+	font-size:14px;
+	color:white;
+	border-radius:5px 5px 5px 5px;
+	border-width: 1px;
+	border-style:solid;
+	border-color: gray;
+	cursor:pointer;
+	outline:none;	
+}
+#cancel{
+	width:270px;
+	height:35px;
+	margin-top:10px;
+	background:#8B0000;
+	font-family:verdana;
+	font-size:14px;
+	color:white;
+	border-radius:5px 5px 5px 5px;
+	border-width: 1px;
+	border-style:solid;
+	border-color: gray;
+	cursor:pointer;
+	outline:none;	
+}
+#signup{
+	width:270px;
+	height:35px;
+	margin-top:10px;
+	background:#008000;
+	font-family:verdana;
+	font-size:14px;
+	color:white;
+	border-radius:5px 5px 5px 5px;
+	border-width: 1px;
+	border-style:solid;
+	border-color: gray;
+	cursor:pointer;
+	outline:none;	
+}
+.dept_vision_mission_card
+{
+    display: inline-block;
+	margin-left:60px;
+}
+.latest_books_techs
+{
+    display: inline-block;
+	margin-left:650px;
+}
