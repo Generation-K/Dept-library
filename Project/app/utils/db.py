@@ -1,7 +1,3 @@
-import sqlite3
-conn = sqlite3.connect("Department_Library_db.sqlite")
-cur = conn.cursor()
-
 def insert(req):
     name=req["name"]
     usn=req["usn"]

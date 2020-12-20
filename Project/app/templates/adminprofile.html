@@ -39,7 +39,7 @@
             </font>
         </p>
         </center><br><br><br>
-        <div id="admin_user_ops" style="margin-top: 50px; margin-left: 350px; ">
+        <div id="admin_user_ops">
             <div>
                 <input type="submit" id="login" value="Add User" onclick="adduser()" /><br>
             </div>
@@ -53,7 +53,7 @@
                 <input type="submit" id="login" value="User history" onclick="userhistory()" /><br>
             </div>
         </div>
-        <div id="admin_book_ops" style="margin-top: 50px; margin-left: 350px; ">
+        <div id="admin_book_ops">
             <div>
                 <input type="submit" id="login" value="Add Book" onclick="addbook()" /><br>
             </div>
@@ -71,6 +71,27 @@
     <script>
         function addbook(){
             location.href="{{ url_for('addbook') }}"
+        }
+        function adduser(){
+            location.href="{{ url_for('adduser') }}"
+        }
+        function removebook(){
+            location.href="{{ url_for('removebook') }}"
+        }
+        function removeuser(){
+            location.href="{{ url_for('removeuser') }}"
+        }
+        function viewbooks(){
+            location.href="{{ url_for('viewbooks') }}"
+        }
+        function viewusers(){
+            location.href="{{ url_for('viewusers') }}"
+        }
+        function userhistory(){
+            location.href="{{ url_for('userhistory') }}"
+        }
+        function bookhistory(){
+            location.href="{{ url_for('bookhistory') }}"
         }
     </script>
 </html>

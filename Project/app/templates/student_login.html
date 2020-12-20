@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' type='text/css'>
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300' type='text/css'>
+	<link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<title>Log In</title>
+</head>
+<style>
+body
+{
+	background-image:url("{{ url_for('static', filename='img/gat_bg.jpeg') }}");
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+</style>
+<img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+<img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+<center>
+<div class="base">
+		<div id="info1">
+			GLOBAL ACADEMY OF TECHNOLOGY<br>
+			<font size="3">
+				Rajarajeshwari Nagar, Bengaluru - 560098<br>
+				Approved by AICTE, New Delhi, Recognized by Govt. of Karnataka & Affiliated to Visvesvaraya Technological University, Belagavi
+			</font>
+		</div>
+		<div id="info2">
+			Department of Computer Science and Engineering<br>
+			<font color="maroon" size="5">
+				Accredited by NBA with A grade
+	    	</font>
+	    </div>
+		<div id="info3">
+			<font size="5">
+				<b>"The only true wisdom is knowing you know nothing" - Socrates</b>
+			</font>
+		</div>
+		<form id="student_login_form" action="/student_login" method="POST">
+		<div id="form1">
+            <div id="form-img">
+                <img src="{{ url_for('static', filename='img/cse.png') }}" width="99" height="99" />
+            </div>
+            <div id="mailbox">
+                    <input placeholder="Email" type="mail" id="email" name="email" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br>
+            </div>
+			<div id="mailbox">
+				<input placeholder="Password" type="password" id="password" name="password" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br>
+            </div><br>
+			<div>
+                    		<input type="submit" id="login" value="Login" /><br>
+			</div><br>
+		</form>
+			<div id="info4">
+                	<a href="{{ url_for('student_signup') }}">Sign Up!</a>
+			</div>
+		</div>
+		
+</div>
+</center>
+<script>
+	if(results)
+	{
+		var msg = "{{results}}"
+		alert("{{msg}}")
+	}
+</script>
+</body>
+</html>
+            

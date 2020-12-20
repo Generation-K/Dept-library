@@ -43,7 +43,7 @@ body
 				<b>"The only true wisdom is knowing you know nothing" - Socrates</b>
 			</font>
 		</div>
-		<div id="form1"><br>
+		<div id="form1">
             <div id="form-img">
                 <img src="{{ url_for('static', filename='img/cse.png') }}" width="99" height="99" />
             </div><br>
@@ -51,7 +51,10 @@ body
             <input type="submit" id="login" value="ADMIN" onclick="admin()"/><br>
 		</div><br>
 		<div>
-			<input type="submit" id="login" value="USER" onclick="user()" /><br>
+            <input type="submit" id="login" value="TEACHER" onclick="teacher()"/><br>
+		</div><br>
+		<div>
+			<input type="submit" id="login" value="STUDENT" onclick="student()" /><br>
 		</div><br>
 		</div>
 </div>
@@ -61,9 +64,13 @@ body
 	{
 		location.href="{{ url_for('adminlogin') }}"
 	}
-	function user()
+	function student()
 	{
-		location.href="{{ url_for('login') }}"
+		location.href="{{ url_for('student_login') }}"
+	}
+	function teacher()
+	{
+		location.href="{{ url_for('teacher_login') }}"
 	}
 </script>
 </body>
