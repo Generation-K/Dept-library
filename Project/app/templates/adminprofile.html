@@ -2,7 +2,6 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
         <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
         <title>Admin</title>
         <style>
@@ -25,12 +24,12 @@
                     Accredited by NBA with A grade
                 </font>
             </div>
-        <p><br><br><br>
+        <p><br>
             <font color="black" size="5">
                 <u><b>Department Library Database</b></u>
             </font>
         </p>
-        <p><br><br><br>
+        <p><br>
             <font size="5" color="blue">
                 WELCOME ADMIN!!
             </font><br>
@@ -38,22 +37,57 @@
                 Click on the operation you want to perform
             </font>
         </p>
-        </center><br><br><br>
-        <div id="admin_user_ops">
+        </center>
+        <div id="admin-student-ops" style="margin-left: 115px; display: inline-block;">
+            <p>
+                <center><font size="4"><b><u>Student Operations</u></b></font></center>
+            </p>
             <div>
-                <input type="submit" id="login" value="Add User" onclick="adduser()" /><br>
+                <input type="submit" id="login" value="Add Student" onclick="addstudent()" />
             </div>
             <div>
-                <input type="submit" id="login" value="Remove User" onclick="removeuser()" /><br>
+                <input type="submit" id="login" value="Remove Student" onclick="removestudent()" />
             </div>
             <div>
-                <input type="submit" id="login" value="View Users" onclick="viewusers()" /><br>
+                <input type="submit" id="login" value="View Students" onclick="viewstudents()" />
             </div>
             <div>
-                <input type="submit" id="login" value="User history" onclick="userhistory()" /><br>
+                <input type="submit" id="login" value="Student history" onclick="studenthistory()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Student Update" onclick="studentupdate()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Borrow" onclick="studentborrow()" />
             </div>
         </div>
-        <div id="admin_book_ops">
+        <div id="admin-teacher-ops" style="margin-left: 150px; display: inline-block;">
+            <p>
+                <center><font size="4"><b><u>Teacher Operations</u></b></font></center>
+            </p>
+            <div>
+                <input type="submit" id="login" value="Add Teacher" onclick="addteacher()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Remove Teacher" onclick="removeteacher()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="View Teachers" onclick="viewteachers()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Teacher history" onclick="teacherhistory()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Teacher Update" onclick="teacherupdate()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Borrow" onclick="teacherborrow()" />
+            </div>
+        </div>
+        <div id="admin-book-ops" style="margin-left: 150px; display: inline-block;">
+            <p>
+                <center><font size="4"><b><u>Book Operations</u></b></font></center>
+            </p>
             <div>
                 <input type="submit" id="login" value="Add Book" onclick="addbook()" /><br>
             </div>
@@ -64,34 +98,78 @@
                 <input type="submit" id="login" value="View Books" onclick="viewbooks()" /><br>
             </div>
             <div>
-                <input type="submit" id="login" value="Books History" onclick="bookshistory()" /><br>
+                <input type="submit" id="login" value="Book History" onclick="bookhistory()" /><br>
             </div>
-        </div>
+            <div>
+                <input type="submit" id="login" value="Return Book" onclick="bookreturn()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Consolidated Borrow Details" onclick="bookborrow()" />
+            </div>
+        </div><br><br><br>
+        <form id="admin_logout" action="/adminprofile" method="POST">
+            <center><div>
+                <input type="submit" id="cancel" value="Logout" onclick="logout()" />
+            </div></center>
+        </form>
     </body>
     <script>
         function addbook(){
             location.href="{{ url_for('addbook') }}"
         }
-        function adduser(){
-            location.href="{{ url_for('adduser') }}"
+        function addstudent(){
+            location.href="{{ url_for('addstudent') }}"
         }
         function removebook(){
             location.href="{{ url_for('removebook') }}"
         }
-        function removeuser(){
-            location.href="{{ url_for('removeuser') }}"
+        function removestudent(){
+            location.href="{{ url_for('removestudent') }}"
         }
         function viewbooks(){
             location.href="{{ url_for('viewbooks') }}"
         }
-        function viewusers(){
-            location.href="{{ url_for('viewusers') }}"
+        function viewstudents(){
+            location.href="{{ url_for('viewstudents') }}"
         }
-        function userhistory(){
-            location.href="{{ url_for('userhistory') }}"
+        function studenthistory(){
+            location.href="{{ url_for('studenthistory') }}"
         }
         function bookhistory(){
             location.href="{{ url_for('bookhistory') }}"
+        }
+        function addteacher(){
+            location.href="{{ url_for('addteacher') }}"
+        }
+        function removeteacher(){
+            location.href="{{ url_for('removeteacher') }}"
+        }
+        function teacherhistory(){
+            location.href="{{ url_for('teacherhistory') }}"
+        }
+        function viewteachers(){
+            location.href="{{ url_for('viewteachers') }}"
+        }
+        function studentupdate(){
+            location.href="{{ url_for('studentupdate') }}"
+        }
+        function teacherupdate(){
+            location.href="{{ url_for('teacherupdate') }}"
+        }
+        function bookreturn(){
+            location.href="{{ url_for('bookreturn') }}"
+        }
+        function studentborrow(){
+            location.href="{{ url_for('studentborrow') }}"
+        }
+        function teacherborrow(){
+            location.href="{{ url_for('teacherborrow') }}"
+        }
+        function bookborrow(){
+            location.href="{{ url_for('bookborrow') }}"
+        }
+        function logout(){
+            location.href="{{ url_for('logout') }}"
         }
     </script>
 </html>

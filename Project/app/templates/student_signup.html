@@ -145,13 +145,17 @@ function save()
 		alert("Please Confirm your Password")
 	else if(pass!=cpass)
 		alert("Password and Confirm Password must be same")
+	else if(pass.length<8)
+		alert("The Password should have atleast 8 characters")
+	else if(pno.length!=10)
+        alert("Invalid Phone Number")
 	else
-		alert("Registration Successful\nThank You!!")
+		alert("Registration Successful\nThank You!!")  //This part, i dont get error from python rendered to my front end as alert message
 }
 function cancel()
 {
 	alert("Registration Cancelled");
-	location.href = "{{ url_for('teacher_login') }}"
+	location.href = "{{ url_for('student_login') }}"
 }
 </script>
 </body>

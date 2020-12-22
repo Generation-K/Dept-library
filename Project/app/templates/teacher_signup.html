@@ -145,6 +145,10 @@ function save()
 		alert("Please Confirm your Password")
 	else if(pass!=cpass)
 		alert("Password and Confirm Password must be same")
+	else if(pass.length<8)
+		alert("The Password should have atleast 8 characters")
+	else if(pno.length!=10)
+        alert("Invalid Phone Number")
 	else
 		alert("Registration Successful\nThank You!!")
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Add Student</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }
+            
+        </style>
+    </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+    <body>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br><br>
+            <font color="black" size="5">
+                <u><b>Department Library Database</b></u>
+            </font>
+        </p><br>
+        <form id="admin_addstudent_form" action="/admin/addstudent" method="POST">
+			<input placeholder="Name" type="text" id="name" name="name" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="USN" type="text" id="usn" name="usn" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Phone" type="tel" id="phone" name="phone" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="DOB" type="date" id="dob" name="dob" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Email" type="mail" id="email" name="email" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Password" type="password" id="password" name="password" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Confirm Password" type="password" id="cpassword" name="cpassword" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input type="submit" id="signup" value="Add Student" onclick="save()"/><br>
+		</form>
+        <input type="submit" id="cancel" value="Cancel" onclick="cancel()"/>
+        </center>
+        <script>
+            function save()
+            {
+                var name = document.getElementById("name").value
+                var usn = document.getElementById("usn").value
+                var email = document.getElementById("email").value
+                var pno = document.getElementById("phone").value
+                var dob = document.getElementById("dob").value
+                var pass = document.getElementById("password").value
+                var cpass = document.getElementById("cpassword").value
+                if(name=="")
+                    alert("Please enter your Name")
+                else if(usn=="")
+                    alert("Please enter your USN")
+                else if(email=="")
+                    alert("Please enter your Email")
+                else if(pno=="")
+                    alert("Please enter your Phone Number")
+                else if(dob=="")
+                    alert("Please enter your Date of Birth")
+                else if(pass=="")
+                    alert("Please enter your Password")
+                else if(cpass=="")
+                    alert("Please Confirm your Password")
+                else if(pass!=cpass)
+                    alert("Password and Confirm Password must be same")
+                else if(pass.length<8)
+                    alert("The Password should have atleast 8 characters")
+                else if(pno.length!=10)
+                    alert("Invalid Phone Number")
+                else
+                    alert("Registration Successful\nThank You!!")
+            }
+            function cancel()
+            {
+                alert("Registration Cancelled");
+                location.href = "{{ url_for('admin') }}"
+            }
+        </script>
+    </body>
+</html>
+    

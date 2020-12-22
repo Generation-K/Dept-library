@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
         <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
-        <title>Remove Book</title>
+        <title>Remove Teacher</title>
         <style>
             body
             {
@@ -28,21 +28,21 @@
                 <u><b>Department Library Database</b></u>
             </font>
         </p><br>
-        <form id="admin_removebook_form" action="/admin/removebook" method="POST">
-			<input placeholder="Book ID" type="text" id="bid" name="bid" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
-			<input type="submit" id="signup" value="Remove Book" onclick="save()"/><br>
+        <form id="admin_removeteacher_form" action="/admin/removeteacher" method="POST">
+			<input placeholder="Teacher Emp Code" type="text" id="emp" name="emp" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input type="submit" id="signup" value="Remove Teacher" onclick="save()"/><br>
 		</form>
         <input type="submit" id="cancel" value="Cancel" onclick="cancel()"/>
         <script>
             function save(){
-                var bid = document.getElementById("bid").value
-                if(bid=="")
-                    alert("Enter Book ID")
+                var emp = document.getElementById("emp").value
+                if(emp=="")
+                    alert("Enter Emp Code")
                 else
-                    alert("Book Data Removed")
+                    alert("Teacher Data Removed")
             }
             function cancel(){
-                alert("Book Removal Cancelled")
+                alert("Teacher Removal Cancelled")
                 location.href = "{{ url_for('admin') }}"
             }
         </script>
