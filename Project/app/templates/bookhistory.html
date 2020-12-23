@@ -1,10 +1,50 @@
+<!DOCTYPE html>
 <html>
-<head>
-<title>Book History</title>
-</head>
-<body>
-<p>
-BOOK HISTORY
-</p>
-</body>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Books History</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }
+        </style>
+    </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+    <body>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br><br>
+            <font color="black" size="5">
+                <u><b>Department Library Database</b></u>
+            </font>
+        </p>
+        <p><br>
+       <center>
+        <div class="flashes">
+            {% for message in get_flashed_messages()%}
+              {{ message }}
+            {% endfor %}
+          </div><br>
+      <form id="bookhistory" action="/admin/bookhistory" method="POST"></form>
+      <div>
+        <input type="submit" id="login" value="Back" onclick="back()" />
+      </div>
+      </form>
+      </center>
+      <script>
+          function back(){
+              location.href="{{ url_for('admin') }}"
+          }
+      </script>
+   </body>
 </html>

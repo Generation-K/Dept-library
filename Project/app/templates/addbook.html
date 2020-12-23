@@ -35,7 +35,6 @@
 			<input placeholder="Author" type="text" id="author" name="author" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
 			<input placeholder="Publisher" type="text" id="publisher" name="publisher" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
             <input placeholder="ISBN" type="number" id="isbn" name="isbn" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
-            <input placeholder="Total Stock" type="number" id="stock" name="stock" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
             <input type="submit" id="signup" value="Add Book" onclick="save()"/><br>
 		</form>
         <input type="submit" id="cancel" value="Cancel" onclick="cancel()"/>
@@ -47,7 +46,6 @@
                 var author = document.getElementById("author").value
                 var pub = document.getElementById("publisher").value
                 var isbn = document.getElementById("isbn").value
-                var stock = document.getElementById("stock").value
                 if(bid=="")
                     alert("Please enter Book ID")
                 else if(name=="")
@@ -58,8 +56,8 @@
                     alert("Please enter Publisher of Book")
                 else if(isbn=="")
                     alert("Please enter the ISBN Code")
-                else if(stock=="")
-                    alert("Please enter total stock of Book")
+                else if(!(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/.test(isbn)))
+                    alert("Please enter valid ISBN Code")
                 else
                     alert("Book added Successfully\nThank You!!")
             }

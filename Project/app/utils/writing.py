@@ -23,3 +23,28 @@ def book_write(entries):
         writer.writeheader()
         for i in entries:
             writer.writerow({ "Book ID":i[0], "Name":i[1], "Author":i[2], "Publisher":i[3], "ISBN Code":i[4] })
+
+def stu_history_csv(data):
+    with open("C:\\Users\\Sharan\\Downloads\\Students_history.csv", "w", newline="") as f:
+        fieldnames = ["Tid","Borrower","Book ID","Date of Borrow","Due Date","Date of Return"]
+        writer = csv.DictWriter(f, fieldnames = fieldnames)
+        writer.writeheader()
+        for i in data:
+            writer.writerow({ "Tid":i[0], "Borrower":i[1], "Book ID":i[2], "Date of Borrow":i[3], "Due Date":i[4], "Date of Return":i[5] })
+    
+
+def teach_history_csv(data):
+    with open("C:\\Users\\Sharan\\Downloads\\Teachers_history.csv", "w", newline="") as f:
+        fieldnames = ["Tid","Borrower","Book ID", "Date of Borrow","Due Date","Date of Return"]
+        writer = csv.DictWriter(f, fieldnames = fieldnames)
+        writer.writeheader()
+        for i in data:
+            writer.writerow({ "Tid":i[0], "Borrower":i[1], "Book ID":i[2], "Date of Borrow":i[3], "Due Date":i[4], "Date of Return":i[5] })
+
+def book_history_csv(data):
+    with open("C:\\Users\\Sharan\\Downloads\\Books_history.csv", "w", newline="") as f:
+        fieldnames = ["Tid","Book ID","Borrower","Date of Borrow","Due Date","Date of Return"]
+        writer = csv.DictWriter(f, fieldnames = fieldnames)
+        writer.writeheader()
+        for i in data:
+            writer.writerow({ "Tid":i[0], "Borrower":i[1], "Book ID":i[2], "Date of Borrow":i[3], "Due Date":i[4], "Date of Return":i[5] })

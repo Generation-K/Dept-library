@@ -1,4 +1,5 @@
 import mysql.connector
+import re
 
 db = mysql.connector.connect(
     host="localhost",
@@ -17,6 +18,8 @@ def stu_val(req):
     email=req["email"]
     password=req["password"]
     cpassword=req["cpassword"]
+    email_res = re.match(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",email)
+    pno_res = re.match(r"^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$",pno)
     if not name:
         return "Please enter your name"
     elif not usn:
@@ -37,6 +40,10 @@ def stu_val(req):
         return "Password should have atleast 8 characters"
     elif len(pno) != 10:
         return "Invalid Phone Number"
+    elif not email_res:
+        return "Invalid Email"
+    elif not pno_res:
+        return "Invalid Phone Number"
     else:
         data = list()
         sql1 = "SELECT usn FROM student_user WHERE usn = %s"
@@ -44,8 +51,8 @@ def stu_val(req):
         mycursor.execute(sql1,val1)
         data = mycursor.fetchall()
         if not data:
-            sql = "INSERT INTO student_user (usn, name, email, pass, phone, dob) VALUES (%s,%s,%s,%s,%s,%s)"
-            val = (usn.upper(),name,email,password,pno,dob)
+            sql = "INSERT INTO student_user (usn, name, email, pass, phone, dob, br_no) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+            val = (usn.upper(),name,email,password,pno,dob,3)
             mycursor.execute(sql, val)
             db.commit()
             return "Success"
@@ -60,6 +67,8 @@ def teach_val(req):
     email=req["email"]
     password=req["password"]
     cpassword=req["cpassword"]
+    email_res = re.match(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",email)
+    pno_res = re.match(r"^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$",pno)
     if not name:
         return "Please enter your name"
     elif not emp:
@@ -80,6 +89,10 @@ def teach_val(req):
         return "Password should have atleast 8 characters"
     elif len(pno) != 10:
         return "Invalid Phone Number"
+    elif not email_res:
+        return "Invalid Email"
+    elif not pno_res:
+        return "Invalid Phone Number"
     else:
         data = list()
         sql1 = "SELECT emp FROM teacher_user WHERE emp = %s"
@@ -87,8 +100,8 @@ def teach_val(req):
         mycursor.execute(sql1,val1)
         data = mycursor.fetchall()
         if not data:
-            sql = "INSERT INTO teacher_user (emp, name, email, pass, phone, dob) VALUES (%s,%s,%s,%s,%s,%s)"
-            val = (emp.upper(),name,email,password,pno,dob)
+            sql = "INSERT INTO teacher_user (emp, name, email, pass, phone, dob) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+            val = (emp.upper(),name,email,password,pno,dob,3)
             mycursor.execute(sql, val)
             db.commit()
             return "Success"
@@ -101,7 +114,7 @@ def book_val(req):
     author = req["author"]
     pub = req["publisher"]
     isbn = req["isbn"]
-    stock = req["stock"]
+    result = re.match(r"^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$",isbn)
     if not bid:
         return "Enter Book ID"
     elif not name:
@@ -112,8 +125,8 @@ def book_val(req):
         return "Enter the Publisher of the Book"
     elif not isbn:
         return "Enter the ISBN Code"
-    elif not stock:
-        return "Enter the total stock of book"
+    elif not result:
+        return "Invalid ISBN Code"
     else:
         data = list()
         sql = "SELECT id FROM books WHERE id = %s"
@@ -121,8 +134,8 @@ def book_val(req):
         mycursor.execute(sql,val)
         data = mycursor.fetchall()
         if not data:
-            sql1 = "INSERT INTO books (id, name, author, publisher, isbn) VALUES (%s,%s,%s,%s,%s)"
-            val1 = (bid.upper(),name,author,pub,isbn)
+            sql1 = "INSERT INTO books (id, name, author, publisher, isbn, avail) VALUES (%s,%s,%s,%s,%s,%s)"
+            val1 = (bid.upper(),name,author,pub,isbn,1)
             mycursor.execute(sql1,val1)
             db.commit()
             return "Success"
@@ -130,11 +143,12 @@ def book_val(req):
             return "Book ID already exists"
 
 def S_logval(req):
+    data = list()
     sql = "SELECT email, pass FROM student_user WHERE email = %s"
     val = (req["email"],)
     mycursor.execute(sql,val)
     data = mycursor.fetchall()
-    if data == None:
+    if not data:
         return "Invalid Email"
     elif data[0][1] != req["password"]:
         return "Invalid Password"

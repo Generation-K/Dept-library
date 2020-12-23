@@ -43,6 +43,11 @@ body
 				<b>"The only true wisdom is knowing you know nothing" - Socrates</b>
 			</font>
 		</div>
+		<div class="flashes">
+            {% for message in get_flashed_messages()%}
+              {{ message }}
+            {% endfor %}
+          </div>
 		<form id="student_login_form" action="/student_login" method="POST">
 		<div id="form1">
             <div id="form-img">
@@ -55,14 +60,13 @@ body
 				<input placeholder="Password" type="password" id="password" name="password" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br>
             </div><br>
 			<div>
-                    		<input type="submit" id="login" value="Login" /><br>
+				<input type="submit" id="login" value="Login" /><br>
 			</div><br>
 		</form>
 			<div id="info4">
                 	<a href="{{ url_for('student_signup') }}">Sign Up!</a>
 			</div>
-		</div>
-		
+		</div>	
 </div>
 </center>
 </body>

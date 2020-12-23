@@ -71,8 +71,12 @@
                     alert("The Password should have atleast 8 characters")
                 else if(pno.length!=10)
                     alert("Invalid Phone Number")
-                else
-                    alert("Registration Successful\nThank You!!")
+                else if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)))
+		            alert("Invalid Email")
+	            else if(!(/^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$/.test(pno)))
+		            alert("Invalid Phone Number")
+	            else
+		            alert("Registration Successfully Completed\nThank You!!")
             }
             function cancel()
             {

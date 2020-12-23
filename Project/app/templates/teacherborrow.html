@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Teacher Borrow</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }            
+        </style>
+    </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+    <body>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br>
+            <font color="black" size="5">
+                <u><b>Department Library Database</b></u>
+            </font><br><br>
+            <font color="black" size="4">
+                Enter Date of Borrow and then Due Date
+            </font>
+        </p>
+        <form id="teacherborrow" action="/admin/teacherborrow" method="POST">
+            <input placeholder="Emp Code" type="text" id="emp" name="emp" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Book ID" type="text" id="bookid" name="bookid" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+            <input placeholder="Date of Borrow" type="date" id="dob" name="dob" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Due Date" type="date" id="due" name="due" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+            <input type="submit" id="signup" value="Confirm" onclick="save()"/><br>
+		</form>
+        <input type="submit" id="cancel" value="Cancel" onclick="cancel()"/>
+        </form>
+        </center>
+        <script>
+            function save(){
+                var emp = document.getElementById("emp").value 
+                var bid = document.getElementById("bookid").value
+                var dob = document.getElementById("dob").value
+                var due = document.getElementById("due").value
+                if(usn=="")
+                    alert("Enter Employee Code")
+                else if(bid=="")
+                    alert("Enter Book ID")
+                else if(dob=="")
+                    alert("Enter Borrow Date")
+                else if(due=="")
+                    alert("Enter Due Date")
+                else
+                    alert("Book Borrowing Successful")
+            }
+            function cancel(){
+                alert("Book Borrowing Cancelled")
+                location.href = "{{ url_for('admin') }}"
+            }
+        </script>
+    </body>
+</html>

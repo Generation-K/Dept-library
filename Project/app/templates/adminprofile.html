@@ -52,13 +52,10 @@
                 <input type="submit" id="login" value="View Students" onclick="viewstudents()" />
             </div>
             <div>
-                <input type="submit" id="login" value="Student history" onclick="studenthistory()" />
+                <input type="submit" id="login" value="Consolidated Student history" onclick="studenthistory()" />
             </div>
             <div>
-                <input type="submit" id="login" value="Student Update" onclick="studentupdate()" />
-            </div>
-            <div>
-                <input type="submit" id="login" value="Borrow" onclick="studentborrow()" />
+                <input type="submit" id="login" value="Student Borrow" onclick="studentborrow()" />
             </div>
         </div>
         <div id="admin-teacher-ops" style="margin-left: 150px; display: inline-block;">
@@ -75,13 +72,10 @@
                 <input type="submit" id="login" value="View Teachers" onclick="viewteachers()" />
             </div>
             <div>
-                <input type="submit" id="login" value="Teacher history" onclick="teacherhistory()" />
+                <input type="submit" id="login" value="Consolidated Teacher history" onclick="teacherhistory()" />
             </div>
             <div>
-                <input type="submit" id="login" value="Teacher Update" onclick="teacherupdate()" />
-            </div>
-            <div>
-                <input type="submit" id="login" value="Borrow" onclick="teacherborrow()" />
+                <input type="submit" id="login" value="Teacher Borrow" onclick="teacherborrow()" />
             </div>
         </div>
         <div id="admin-book-ops" style="margin-left: 150px; display: inline-block;">
@@ -98,20 +92,17 @@
                 <input type="submit" id="login" value="View Books" onclick="viewbooks()" /><br>
             </div>
             <div>
-                <input type="submit" id="login" value="Book History" onclick="bookhistory()" /><br>
+                <input type="submit" id="login" value="Consolidated Book History" onclick="bookhistory()" /><br>
             </div>
             <div>
                 <input type="submit" id="login" value="Return Book" onclick="bookreturn()" />
             </div>
-            <div>
-                <input type="submit" id="login" value="Consolidated Borrow Details" onclick="bookborrow()" />
-            </div>
         </div><br><br><br>
-        <form id="admin_logout" action="/adminprofile" method="POST">
+        <div>
             <center><div>
                 <input type="submit" id="cancel" value="Logout" onclick="logout()" />
             </div></center>
-        </form>
+        </div>
     </body>
     <script>
         function addbook(){
@@ -150,12 +141,6 @@
         function viewteachers(){
             location.href="{{ url_for('viewteachers') }}"
         }
-        function studentupdate(){
-            location.href="{{ url_for('studentupdate') }}"
-        }
-        function teacherupdate(){
-            location.href="{{ url_for('teacherupdate') }}"
-        }
         function bookreturn(){
             location.href="{{ url_for('bookreturn') }}"
         }
@@ -164,9 +149,6 @@
         }
         function teacherborrow(){
             location.href="{{ url_for('teacherborrow') }}"
-        }
-        function bookborrow(){
-            location.href="{{ url_for('bookborrow') }}"
         }
         function logout(){
             location.href="{{ url_for('logout') }}"

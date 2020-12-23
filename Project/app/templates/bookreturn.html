@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Book Return</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }            
+        </style>
+    </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+    <body>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br>
+            <font color="black" size="5">
+                <u><b>Department Library Database</b></u>
+            </font><br><br>
+        </p>
+        <form id="bookreturn" action="/admin/bookreturn" method="POST">
+            <input placeholder="USN/Emp Code" type="text" id="code" name="code" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input placeholder="Book ID" type="text" id="bookid" name="bookid" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+            <input placeholder="Date of Return" type="date" id="dor" name="dor" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+			<input type="submit" id="signup" value="Confirm" onclick="save()"/><br>
+		</form>
+        <input type="submit" id="cancel" value="Cancel" onclick="cancel()"/>
+        </form>
+        </center>
+        <script>
+            function save(){
+                var code = document.getElementById("code").value 
+                var bid = document.getElementById("bookid").value
+                var dor = document.getElementById("dor").value
+                if(code=="")
+                    alert("Enter Borrower Code")
+                else if(bid=="")
+                    alert("Enter Book ID")
+                else if(dor=="")
+                    alert("Enter Return Date")
+                else
+                    alert("Book Returning Successful")
+            }
+            function cancel(){
+                alert("Book Returning Cancelled")
+                location.href = "{{ url_for('admin') }}"
+            }
+        </script>
+    </body>
+</html>
