@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Details</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }
+        </style>
+    </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
+    <body>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br>
+            <font color="black" size="5">
+                <u><b>Digitalized Department Library</b></u>
+            </font>
+        </p><br><br>
+        <p><br>
+            <font color="black" size="5">
+                <b>Details:</b>
+            </font>
+        </p><br>
+        <table border=1>
+        {% for usn, name, email, phone, dob in result %}
+        <th>USN</th>
+        <td>{{ usn }}</td>
+        <th>Name</th>
+        <td>{{ name }}</td>
+        <th>Email</th>
+        <td>{{ email }}</td>
+        <th>Phone</th>
+        <td>{{ phone }}</td>
+        <th>DOB</th>
+        <td>{{ dob }}</td>
+        {% endfor %}
+        </table><br>
+        <div>
+            <input type="submit" id="login" value="Back" onclick="back()" />
+        </div>
+        </center>
+        <script>
+            function back(){
+                location.href = "{{ url_for('studentprofile') }}"
+            }
+        </script>
+
+    </body>
+</html>

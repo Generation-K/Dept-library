@@ -167,3 +167,68 @@ def T_logval(req):
         return "Invalid Password"
     else:
         return "Success"
+
+def update(req,code,who):
+    name = req["name"]
+    email = req["email"]
+    password = req["pass"]
+    cpassword = req["cpass"]
+    pno = req["phone"]
+    if password != cpassword:
+        return "Password and Confirm Password must be same"
+    elif not name and not email and not password and not cpassword and not pno:
+        return "Success"
+    elif email:
+        email_res = re.match(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",email)
+        if not email_res:
+            return "Invalid Email"
+    elif pno:
+        pno_res = re.match(r"^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$",pno)
+        if not pno_res:
+            return "Invalid Phone Number"
+    elif len(password)<8:
+        return "Password should have atleast 8 characters"
+    else:
+        if who == "s":
+            if name:
+                sql = "UPDATE student_user SET name=%s WHERE usn=%s"
+                val = (name,code)
+                mycursor.execute(sql,val)
+                db.commit()
+            if email:
+                sql = "UPDATE student_user SET email=%s WHERE usn=%s"
+                val = (email,code)
+                mycursor.execute(sql,val)
+                db.commit()
+            if pno:
+                sql = "UPDATE student_user SET phone=%s WHERE usn=%s"
+                val = (pno,code)
+                mycursor.execute(sql,val)
+                db.commit()
+            if password:
+                sql = "UPDATE student_user SET pass=%s WHERE usn=%s"
+                val = (password,code)
+                mycursor.execute(sql,val)
+                db.commit()
+        if who == "t":
+            if name:
+                sql = "UPDATE teacher_user SET name=%s WHERE emp=%s"
+                val = (name,code)
+                mycursor.execute(sql,val)
+                db.commit()
+            if email:
+                sql = "UPDATE teacher_user SET email=%s WHERE emp=%s"
+                val = (email,code)
+                mycursor.execute(sql,val)
+                db.commit()
+            if pno:
+                sql = "UPDATE teacher_user SET phone=%s WHERE emp=%s"
+                val = (pno,code)
+                mycursor.execute(sql,val)
+                db.commit()
+            if password:
+                sql = "UPDATE teacher_user SET pass=%s WHERE emp=%s"
+                val = (password,code)
+                mycursor.execute(sql,val)
+                db.commit()
+        return "Success"

@@ -48,3 +48,43 @@ def book_history():
     mycursor.execute("SELECT tid,br_id,b_id,dob,due,dor FROM borrow")
     data = mycursor.fetchall()
     return data
+
+def stu_det(usn):
+    data = list()
+    sql = "SELECT usn,name,email,phone,dob FROM student_user WHERE usn=%s"
+    val = (usn,)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    return data
+
+def teach_det(emp):
+    data = list()
+    sql = "SELECT emp,name,email,phone,dob FROM teacher_user WHERE emp=%s"
+    val = (emp,)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    return data
+
+def avail_books():
+    data = list()
+    sql = "SELECT id,name,author,publisher FROM books WHERE avail=%s"
+    val = (1,)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    return data
+
+def p_stu_history(usn):
+    data = list()
+    sql = "SELECT br_id,b_id,dob,due,dor FROM borrow WHERE br_id=%s"
+    val = (usn,)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    return data
+
+def p_teach_history(emp):
+    data = list()
+    sql = "SELECT br_id,b_id,dob,due,dor FROM borrow WHERE br_id=%s"
+    val = (emp,)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    return data

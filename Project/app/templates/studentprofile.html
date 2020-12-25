@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Student Profile</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
+        <title>Student</title>
+        <style>
+            body
+            {
+	            background-image: url("{{ url_for('static', filename='img/plain_bg.jpg') }}");
+	            background-repeat: no-repeat;
+	            background-size: cover;
+            }
+        </style>
     </head>
+    <img src="{{ url_for('static', filename='img/gat_logo.png') }}" style="float: left; width: 12%"/>
+    <img src="{{ url_for('static', filename='img/naac_logo.png') }}" style="float: right; width: 10%"/>
     <body>
-        <p>
-            STUDENT PROFILE
-        </p>
+        <center><br>
+            <div id="info2">
+                Department of Computer Science and Engineering<br>
+                <font color="maroon" size="5">
+                    Accredited by NBA with A grade
+                </font>
+            </div>
+        <p><br>
+            <font color="black" size="5">
+                <u><b>Digitalized Department Library</b></u>
+            </font>
+        </p><br>
+        <div id="student-ops" style="margin-left: 0px; display: inline-block;">
+            <div>
+                <input type="submit" id="login" value="My Details" onclick="studetails()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="View Available Books" onclick="stuavailbooks()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="Update My Details" onclick="stuupdatedetails()" />
+            </div>
+            <div>
+                <input type="submit" id="login" value="My History" onclick="stuhistory()" />
+            </div>
+        </div><br><br><br>
+        <div>
+            <input type="submit" id="cancel" value="Logout" onclick="logout()" />
+        </div>
+        </center>
+        <script>
+            function studetails(){
+                location.href = "{{ url_for('studetails') }}"
+            }
+            function stuavailbooks(){
+                location.href = "{{ url_for('stuavailbooks') }}"
+            }
+            function stuupdatedetails(){
+                location.href = "{{ url_for('stuupdate') }}"
+            }
+            function stuhistory(){
+                location.href = "{{ url_for('stuhistory') }}"
+            }
+            function logout(){
+                location.href = "{{ url_for('logout') }}"
+            }
+        </script>
     </body>
 </html>
