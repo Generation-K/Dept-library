@@ -29,7 +29,7 @@ def book_display():
 
 def stu_history():
     data = list()
-    sql = "SELECT tid,br_id,b_id,dob,due,dor FROM borrow WHERE s_t=%s"
+    sql = "SELECT br_id,b_id,dob,due,dor FROM borrow WHERE s_t=%s"
     val = ("s",)
     mycursor.execute(sql,val)
     data = mycursor.fetchall()
@@ -37,7 +37,7 @@ def stu_history():
 
 def teach_history():
     data = list()
-    sql = "SELECT tid,br_id,b_id,dob,due,dor FROM borrow WHERE s_t=%s"
+    sql = "SELECT br_id,b_id,dob,due,dor FROM borrow WHERE s_t=%s"
     val = ("t",)
     mycursor.execute(sql,val)
     data = mycursor.fetchall()
@@ -45,7 +45,7 @@ def teach_history():
 
 def book_history():
     data = list()
-    mycursor.execute("SELECT tid,br_id,b_id,dob,due,dor FROM borrow")
+    mycursor.execute("SELECT br_id,b_id,dob,due,dor FROM borrow")
     data = mycursor.fetchall()
     return data
 

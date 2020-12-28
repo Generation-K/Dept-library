@@ -158,11 +158,11 @@ def viewstudents():
 def bookhistory():
     data = list()
     data = book_history()
-    book_history_csv(data)
     if not data:
         msg = "No Book History"
     else:
         msg = "The Books History data has been written on the Books_History.csv file in the Downloads folder"
+        book_history_csv(data)
     flash(msg)
     return render_template("bookhistory.html")
 
@@ -170,11 +170,11 @@ def bookhistory():
 def studenthistory():
     data = list()
     data = stu_history()
-    stu_history_csv(data)
     if not data:
         msg = "No Student History"
     else:
         msg = "The Student History data has been written on the Students_History.csv file in the Downloads folder"
+        stu_history_csv(data)
     flash(msg)
     return render_template("studenthistory.html",data=data)
 
@@ -217,11 +217,11 @@ def viewteachers():
 def teacherhistory():
     data = list()
     data = teach_history()
-    teach_history_csv(data)
     if not data:
         msg = "No Teacher History"
     else:
         msg = "The Teacher History data has been written on the Teachers_History.csv file in the Downloads folder"
+        teach_history_csv(data)
     flash(msg)
     return render_template("teacherhistory.html")
 
