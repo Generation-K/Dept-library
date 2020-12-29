@@ -100,7 +100,7 @@ def teach_val(req):
         mycursor.execute(sql1,val1)
         data = mycursor.fetchall()
         if not data:
-            sql = "INSERT INTO teacher_user (emp, name, email, pass, phone, dob) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+            sql = "INSERT INTO teacher_user (emp, name, email, pass, phone, dob, br_no) VALUES (%s,%s,%s,%s,%s,%s,%s)"
             val = (emp.upper(),name,email,password,pno,dob,3)
             mycursor.execute(sql, val)
             db.commit()

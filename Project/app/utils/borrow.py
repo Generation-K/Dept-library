@@ -20,7 +20,7 @@ def admin_stu_borrow(req):
     elif not req["due"]:
         return "Enter Due Date"
     else:
-        sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES %s,%s,%s,%s,%s,%s"
+        sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES (%s,%s,%s,%s,%s)"
         val1 = (req["usn"],req["bookid"],req["dob"],req["due"],"s")
         mycursor.execute(sql1,val1)
         db.commit()
@@ -40,7 +40,7 @@ def admin_teach_borrow(req):
     elif not req["due"]:
         return "Enter Due Date"
     else:
-        sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES %s,%s,%s,%s,%s,%s"
+        sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES (%s,%s,%s,%s,%s)"
         val1 = (req["emp"],req["bookid"],req["dob"],req["due"],"t")
         mycursor.execute(sql1,val1)
         db.commit()
@@ -58,11 +58,11 @@ def returnbook(req):
     elif not req["dor"]:
         return "Enter Return Date"
     else:
-        sql = "UPDATE borrow SET dor=%s WHERE br_id=%s AND b_id=%s AND dor=NULL"
+        sql = "UPDATE borrow SET dor=%s WHERE br_id=%s AND b_id=%s AND dor IS NULL"
         val = (req["dor"],req["code"],req["bookid"])
         mycursor.execute(sql,val)
         db.commit()
         sql1 = "UPDATE books SET avail=1 WHERE id=%s"
-        val1 = (req["bookid"])
+        val1 = (req["bookid"],)
         mycursor.execute(sql1,val1)
         return "Success"

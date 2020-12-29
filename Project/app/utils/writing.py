@@ -26,25 +26,25 @@ def book_write(entries):
 
 def stu_history_csv(data):
     with open("C:\\Users\\Sharan\\Downloads\\Students_history.csv", "w", newline="") as f:
-        fieldnames = ["Tid","Borrower","Book ID","Date of Borrow","Due Date","Date of Return"]
+        fieldnames = ["Borrower","Book ID","Date of Borrow","Due Date","Date of Return"]
         writer = csv.DictWriter(f, fieldnames = fieldnames)
         writer.writeheader()
         for i in data:
-            writer.writerow({ "Tid":i[0], "Borrower":i[1], "Book ID":i[2], "Date of Borrow":i[3], "Due Date":i[4], "Date of Return":i[5] })
+            writer.writerow({ "Borrower":i[0], "Book ID":i[1], "Date of Borrow":i[2], "Due Date":i[3], "Date of Return":i[4] })
     
 
 def teach_history_csv(data):
     with open("C:\\Users\\Sharan\\Downloads\\Teachers_history.csv", "w", newline="") as f:
-        fieldnames = ["Tid","Borrower","Book ID", "Date of Borrow","Due Date","Date of Return"]
+        fieldnames = ["Borrower","Book ID", "Date of Borrow","Due Date","Date of Return"]
         writer = csv.DictWriter(f, fieldnames = fieldnames)
         writer.writeheader()
         for i in data:
-            writer.writerow({ "Tid":i[0], "Borrower":i[1], "Book ID":i[2], "Date of Borrow":i[3], "Due Date":i[4], "Date of Return":i[5] })
+            writer.writerow({ "Borrower":i[0], "Book ID":i[1], "Date of Borrow":i[2], "Due Date":i[3], "Date of Return":i[4] })
 
 def book_history_csv(data):
     with open("C:\\Users\\Sharan\\Downloads\\Books_history.csv", "w", newline="") as f:
-        fieldnames = ["Tid","Book ID","Borrower","Date of Borrow","Due Date","Date of Return"]
+        fieldnames = ["Book ID","Borrower","Date of Borrow","Due Date","Date of Return"]
         writer = csv.DictWriter(f, fieldnames = fieldnames)
         writer.writeheader()
         for i in data:
-            writer.writerow({ "Tid":i[0], "Borrower":i[1], "Book ID":i[2], "Date of Borrow":i[3], "Due Date":i[4], "Date of Return":i[5] })
+            writer.writerow({ "Borrower":i[0], "Book ID":i[1], "Date of Borrow":i[2], "Due Date":i[3], "Date of Return":i[4] })

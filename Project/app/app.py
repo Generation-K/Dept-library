@@ -279,11 +279,11 @@ def stuupdate():
     status = None
     if request.method == "POST":
         req = request.form
-    status = update(req,g.user,"s")
-    if status == "Success":
-        return redirect("/studentprofile")
-    else:
-        return redirect("/studentprofile/stuupdate")
+        status = update(req,g.user,"s")
+        if status == "Success":
+            return redirect("/studentprofile")
+        else:
+            return redirect("/studentprofile/stuupdate")
     return render_template("stuupdate.html")
 
 @app.route("/teacherprofile/teachupdate")
@@ -291,11 +291,11 @@ def teachupdate():
     status = None
     if request.method == "POST":
         req = request.form
-    status = update(req,g.user,"t")
-    if status == "Success":
-        return redirect("/teacherprofile")
-    else:
-        return redirect("/teacher/teachupdate")
+        status = update(req,g.user,"t")
+        if status == "Success":
+            return redirect("/teacherprofile")
+        else:
+            return redirect("/teacher/teachupdate")
     return render_template("teachupdate.html")
 
 @app.route("/studentprofile/stuavailbooks")
