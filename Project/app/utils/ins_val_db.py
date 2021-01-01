@@ -10,6 +10,24 @@ db = mysql.connector.connect(
 
 mycursor = db.cursor()
 
+def stu(req):
+    data = list()
+    sql = "SELECT usn FROM student_user WHERE email=%s"
+    val = (req["email"],)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    db.commit()
+    return data
+
+def teach(req):
+    data = list()
+    sql = "SELECT emp FROM teacher_user WHERE email=%s"
+    val = (req["email"],)
+    mycursor.execute(sql,val)
+    data = mycursor.fetchall()
+    db.commit()
+    return data
+
 def stu_val(req):
     name=req["name"]
     usn=req["usn"]

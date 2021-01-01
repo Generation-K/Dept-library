@@ -65,3 +65,15 @@ def book_del(req):
             mycursor.execute(sql2,val2)
             db.commit()
             return "Success"
+
+def teach_del_acc(emp):
+    sql = "DELETE FROM teacher_user WHERE emp=%s"
+    val = (emp.upper(),)
+    mycursor.execute(sql,val)
+    db.commit()
+
+def stu_del_acc(usn):
+    sql = "DELETE FROM student_user WHERE usn=%s"
+    val = (usn.upper(),)
+    mycursor.execute(sql,val)
+    db.commit()

@@ -27,34 +27,35 @@
             <font color="black" size="5">
                 <u><b>Digitalized Department Library</b></u>
             </font>
-        </p><br><br>
-        <p><br>
+        </p><br>
+        <p>
             <font color="black" size="5">
                 <b>Available Books:</b>
             </font>
         </p><br>
         <table border=1>
+            <tr>
+                <th>Book ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Publisher</th>
+            </tr>
             {% for id, name, author, publisher in result %}
-            <th>Book ID</th>
+            <tr>
             <td>{{ id }}</td>
-            <th>Name</th>
-            <td>{{ name }}</td>
-            <th>Author</th>
-            <td>{{ author }}</td>
-            <th>Publisher</th>
+            <td>{{ name }}</td>            
+            <td>{{ author }}</td>            
             <td>{{ publisher }}</td>
+            </tr>
             {% endfor %}
             </table><br>
-            <div>
-                <input type="submit" id="login" value="Back" onclick="back()" />
-            </div>
+        <input type="submit" id="login" value="Back" onclick="cancel()"/>
             </center>
             <script>
-                function back(){
+                function cancel(){
                     location.href = "{{ url_for('teacherprofile') }}"
                 }
             </script>
-    
         </body>
     </html>
     

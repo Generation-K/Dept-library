@@ -1,7 +1,7 @@
 from flask import Flask, flash, request, url_for, redirect, render_template, session, g
 from flask_bootstrap import Bootstrap
-from utils.ins_val_db import stu_val, teach_val, S_logval, T_logval, book_val, update
-from utils.del_val_db import stu_del, teach_del, book_del
+from utils.ins_val_db import stu, teach, stu_val, teach_val, S_logval, T_logval, book_val, update
+from utils.del_val_db import stu_del, teach_del, book_del, teach_del_acc, stu_del_acc
 from utils.display import stu_display, teach_display, book_display, stu_history, teach_history, book_history
 from utils.display import stu_det, teach_det, avail_books, p_teach_history, p_stu_history
 from utils.writing import stu_write, teach_write, book_write, stu_history_csv, teach_history_csv, book_history_csv
@@ -24,6 +24,8 @@ def student_login():
         if(status != "Success"):
             return redirect("/student_login")
         else:
+            user = stu(req)
+            session["user"] = user[0][0]
             return redirect("/studentprofile")
     return render_template("student_login.html")
 
@@ -35,6 +37,8 @@ def teacher_login():
         if(status != "Success"):
             return redirect("/teacher_login")
         else:
+            user = teach(req)
+            session["user"] = user[0][0]
             return redirect("/teacherprofile")
     return render_template("teacher_login.html")
 
@@ -43,6 +47,7 @@ def adminlogin():
     if request.method == "POST":
         req = request.form
         if req["email"]=="ADMIN" and req["password"]=="ADMIN":
+            session["user"] = "ADMIN"
             return redirect("/admin")
         else:
             return redirect("/adminlogin")
@@ -74,14 +79,26 @@ def teacher_signup():
 
 @app.route("/admin")
 def admin():
+    if "user" in session:
+        user = session["user"]
+    else:
+        return redirect("/adminlogin")
     return render_template("adminprofile.html") 
 
 @app.route("/studentprofile")
 def studentprofile():
+    if "user" in session:
+        user = session["user"]
+    else:
+        return redirect("/student_login")
     return render_template("studentprofile.html")
 
 @app.route("/teacherprofile")
 def teacherprofile():
+    if "user" in session:
+        user = session["user"]
+    else:
+        return redirect("/teacher_login")
     return render_template("teacherprofile.html")
 
 @app.route("/admin/addbook",methods=["GET","POST"])
@@ -209,8 +226,8 @@ def viewteachers():
         msg = "No Teacher Users"
     else:
         msg = "The Teacher Users data has been written on the Teacher_Users.csv file in the Downloads folder"
+        teach_write(data)
     flash(msg)
-    teach_write(data)
     return render_template("viewteachers.html")
 
 @app.route("/admin/teacherhistory")
@@ -260,18 +277,26 @@ def teacherborrow():
 
 @app.route("/studentprofile/studetails")
 def studetails():
-    data = list()
-    data = stu_det(g.user)
-    if not data:
-        data = [("NULL","NULL","NULL","NULL","NULL")]
+    if "user" in session:
+        user = session["user"]
+        data = list()
+        data = stu_det(user)
+        if not data:
+            data = [("NULL","NULL","NULL","NULL","NULL")]
+    else:
+        return redirect("/student_login")
     return render_template("studetails.html",result=data)
 
 @app.route("/teacherprofile/teachdetails")
 def teachdetails():
-    data = list()
-    data = teach_det(g.user)
-    if not data:
-        data = [("NULL","NULL","NULL","NULL","NULL")]
+    if "user" in session:
+        user = session["user"]
+        data = list()
+        data = teach_det(user)
+        if not data:
+            data = [("NULL","NULL","NULL","NULL","NULL")]
+    else:
+        return redirect("/teacher_login")
     return render_template("teachdetails.html",result=data)
 
 @app.route("/studentprofile/stuupdate",methods=["GET","POST"])
@@ -279,59 +304,94 @@ def stuupdate():
     status = None
     if request.method == "POST":
         req = request.form
-        status = update(req,g.user,"s")
+        status = update(req,session["user"],"s")
         if status == "Success":
             return redirect("/studentprofile")
         else:
             return redirect("/studentprofile/stuupdate")
     return render_template("stuupdate.html")
 
-@app.route("/teacherprofile/teachupdate")
+@app.route("/teacherprofile/teachupdate",methods=["GET","POST"])
 def teachupdate():
     status = None
     if request.method == "POST":
         req = request.form
-        status = update(req,g.user,"t")
+        status = update(req,session["user"],"t")
         if status == "Success":
             return redirect("/teacherprofile")
         else:
-            return redirect("/teacher/teachupdate")
+            return redirect("/teacherprofile/teachupdate")
     return render_template("teachupdate.html")
 
 @app.route("/studentprofile/stuavailbooks")
 def stuavailbooks():
-    data = list()
-    data = avail_books()
-    if not data:
-        data = [("NULL","NULL","NULL","NULL")]
+    if "user" in session:
+        user = session["user"]
+        data = list()
+        data = avail_books()
+        if not data:
+            data = [("NULL","NULL","NULL","NULL")]
+    else:
+        return redirect("/student_login")
     return render_template("stuavailbooks.html",result=data)
 
 @app.route("/teacherprofile/teachavailbooks")
 def teachavailbooks():
-    data = list()
-    data = avail_books()
-    if not data:
-        data = [("NULL","NULL","NULL","NULL")]
+    if "user" in session:
+        user = session["user"]
+        data = list()
+        data = avail_books()
+        if not data:
+            data = [("NULL","NULL","NULL","NULL")]
+    else:
+        return redirect("/teacher_login")
     return render_template("teachavailbooks.html",result=data)
 
 @app.route("/studentprofile/stuhistory")
 def stuhistory():
-    data = list()
-    data = p_stu_history(g.user)
-    if not data:
-        data = [("NULL","NULL","NULL","NULL","NULL")]
+    if "user" in session:
+        user = session["user"]
+        data = list()
+        data = p_stu_history(user)
+        if not data:
+            data = [("NULL","NULL","NULL","NULL","NULL")]
+    else:
+        return redirect("/student_login")
     return render_template("stuhistory.html",result=data)
 
 @app.route("/teacherprofile/teachhistory")
 def teachhistory():
-    data = list()
-    data = p_teach_history(g.user)
-    if not data:
-        data = [("NULL","NULL","NULL","NULL","NULL")]
+    if "user" in session:
+        user = session["user"]
+        data = list()
+        data = p_teach_history(user)
+        if not data:
+            data = [("NULL","NULL","NULL","NULL","NULL")]
+    else:
+        return redirect("/teacher_login")
     return render_template("teachhistory.html",result=data)
+
+@app.route("/studentprofile/studelacc")
+def studelacc():
+    if "user" in session:
+        user = session["user"]
+        stu_del_acc(user)
+    else:
+        return redirect("/student_login")
+    return render_template("studelacc.html")
+
+@app.route("/teacherprofile/teachdelacc")
+def teachdelacc():
+    if "user" in session:
+        user = session["user"]
+        teach_del_acc(user)
+    else:
+        return redirect("/teacher_login")
+    return render_template("teachdelacc.html")
 
 @app.route("/logout")
 def logout():
+    session.pop("user",None)
     return render_template("logout.html")
 
 @app.errorhandler(404)

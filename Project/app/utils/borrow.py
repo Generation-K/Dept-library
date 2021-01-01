@@ -65,4 +65,5 @@ def returnbook(req):
         sql1 = "UPDATE books SET avail=1 WHERE id=%s"
         val1 = (req["bookid"],)
         mycursor.execute(sql1,val1)
+        db.commit()
         return "Success"

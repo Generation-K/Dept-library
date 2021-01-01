@@ -41,6 +41,9 @@
             <div>
                 <input type="submit" id="login" value="My History" onclick="teachhistory()" />
             </div>
+            <div>
+                <input type="submit" id="login" value="Delete My Account" onclick="teachdelacc()" />
+            </div>
         </div><br><br><br>
         <div>
             <input type="submit" id="cancel" value="Logout" onclick="logout()" />
@@ -58,6 +61,9 @@
             }
             function teachhistory(){
                 location.href = "{{ url_for('teachhistory') }}"
+            }
+            function teachdelacc(){
+                location.href = "{{ url_for('teachdelacc') }}"
             }
             function logout(){
                 location.href = "{{ url_for('logout') }}"
