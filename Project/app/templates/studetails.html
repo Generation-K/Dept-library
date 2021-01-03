@@ -34,17 +34,21 @@
             </font>
         </p><br>
         <table border=1>
+            <tr>
+                <th>USN</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>DOB</th>
+            </tr>
         {% for usn, name, email, phone, dob in result %}
-        <th>USN</th>
-        <td>{{ usn }}</td>
-        <th>Name</th>
-        <td>{{ name }}</td>
-        <th>Email</th>
+        <tr>
+        <td>{{ usn }}</td>        
+        <td>{{ name }}</td>        
         <td>{{ email }}</td>
-        <th>Phone</th>
-        <td>{{ phone }}</td>
-        <th>DOB</th>
+        <td>{{ phone }}</td>        
         <td>{{ dob }}</td>
+        </tr>
         {% endfor %}
         </table><br>
         <div>
