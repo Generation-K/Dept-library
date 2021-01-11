@@ -69,8 +69,8 @@ def stu_val(req):
         mycursor.execute(sql1,val1)
         data = mycursor.fetchall()
         if not data:
-            sql = "INSERT INTO student_user (usn, name, email, pass, phone, dob, br_no) VALUES (%s,%s,%s,%s,%s,%s,%s)"
-            val = (usn.upper(),name,email,password,pno,dob,3)
+            sql = "INSERT INTO student_user (usn, name, email, pass, phone, dob) VALUES (%s,%s,%s,%s,%s,%s)"
+            val = (usn.upper(),name,email,password,pno,dob)
             mycursor.execute(sql, val)
             db.commit()
             return "Success"
@@ -118,8 +118,8 @@ def teach_val(req):
         mycursor.execute(sql1,val1)
         data = mycursor.fetchall()
         if not data:
-            sql = "INSERT INTO teacher_user (emp, name, email, pass, phone, dob, br_no) VALUES (%s,%s,%s,%s,%s,%s,%s)"
-            val = (emp.upper(),name,email,password,pno,dob,3)
+            sql = "INSERT INTO teacher_user (emp, name, email, pass, phone, dob) VALUES (%s,%s,%s,%s,%s,%s)"
+            val = (emp.upper(),name,email,password,pno,dob)
             mycursor.execute(sql, val)
             db.commit()
             return "Success"
@@ -186,67 +186,40 @@ def T_logval(req):
     else:
         return "Success"
 
-def update(req,code,who):
-    name = req["name"]
-    email = req["email"]
+def stu_update(req,usn):
+    print(req)
     password = req["pass"]
     cpassword = req["cpass"]
-    pno = req["phone"]
-    if password != cpassword:
+    if not password:
+        return "Enter Password"
+    elif not cpassword:
+        return "Confirm your password"
+    elif password != cpassword:
         return "Password and Confirm Password must be same"
-    elif not name and not email and not password and not cpassword and not pno:
-        return "Success"
-    elif email:
-        email_res = re.match(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",email)
-        if not email_res:
-            return "Invalid Email"
-    elif pno:
-        pno_res = re.match(r"^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$",pno)
-        if not pno_res:
-            return "Invalid Phone Number"
     elif len(password)<8:
-        return "Password should have atleast 8 characters"
+        return "Password must have atleast 8 characters"
     else:
-        if who == "s":
-            if name:
-                sql = "UPDATE student_user SET name=%s WHERE usn=%s"
-                val = (name,code)
-                mycursor.execute(sql,val)
-                db.commit()
-            if email:
-                sql = "UPDATE student_user SET email=%s WHERE usn=%s"
-                val = (email,code)
-                mycursor.execute(sql,val)
-                db.commit()
-            if pno:
-                sql = "UPDATE student_user SET phone=%s WHERE usn=%s"
-                val = (pno,code)
-                mycursor.execute(sql,val)
-                db.commit()
-            if password:
-                sql = "UPDATE student_user SET pass=%s WHERE usn=%s"
-                val = (password,code)
-                mycursor.execute(sql,val)
-                db.commit()
-        if who == "t":
-            if name:
-                sql = "UPDATE teacher_user SET name=%s WHERE emp=%s"
-                val = (name,code)
-                mycursor.execute(sql,val)
-                db.commit()
-            if email:
-                sql = "UPDATE teacher_user SET email=%s WHERE emp=%s"
-                val = (email,code)
-                mycursor.execute(sql,val)
-                db.commit()
-            if pno:
-                sql = "UPDATE teacher_user SET phone=%s WHERE emp=%s"
-                val = (pno,code)
-                mycursor.execute(sql,val)
-                db.commit()
-            if password:
-                sql = "UPDATE teacher_user SET pass=%s WHERE emp=%s"
-                val = (password,code)
-                mycursor.execute(sql,val)
-                db.commit()
+        sql = "UPDATE student_user set pass=%s WHERE usn=%s"
+        val = (password,usn)
+        mycursor.execute(sql,val)
+        db.commit()
+        return "Success"
+
+def teach_update(req,emp):
+    print(req)
+    password = req["pass"]
+    cpassword = req["cpass"]
+    if not password:
+        return "Enter Password"
+    elif not cpassword:
+        return "Confirm your password"
+    elif password != cpassword:
+        return "Password and Confirm Password must be same"
+    elif len(password)<8:
+        return "Password must have atleast 8 characters"
+    else:
+        sql = "UPDATE teacher_user set pass=%s WHERE usn=%s"
+        val = (password,emp)
+        mycursor.execute(sql,val)
+        db.commit()
         return "Success"

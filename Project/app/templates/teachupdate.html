@@ -29,10 +29,7 @@
             </font>
         </p><br>
         <form id="teachupdate" action="/teacherprofile/teachupdate" method="POST">
-            <input placeholder="Name" type="text" id="name" name="name" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
-			<input placeholder="Email" type="text" id="email" name="email" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
-			<input placeholder="Phone" type="tel" id="phone" name="phone" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
-			<input placeholder="Password" type="password" id="pass" name="pass" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
+            <input placeholder="Password" type="password" id="pass" name="pass" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
             <input placeholder="Confirm Password" type="password" id="cpass" name="cpass" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" /><br><br>
             <input type="submit" id="signup" value="Update" onclick="save()"/><br>
         </form>
@@ -40,21 +37,14 @@
         </center>
         <script>
             function save(){
-                var name = document.getElementById("name").value
-                var email = document.getElementById("email").value
-                var pno = document.getElementById("phone").value
                 var pass = document.getElementById("password").value
                 var cpass = document.getElementById("cpassword").value
-                if(pass!=cpass)
+                if(pass == "")
+                    alert("Enter your new password")
+                else if(cpass == "")
+                    alert("Please confirm your password")
+                else if(pass!=cpass)
                     alert("Password and Confirm Password must be same")
-                else if(name=="" && email=="" && pno=="" && pass=="" && cpass=="")
-                    alert("No values Updated")
-                else if(email!="")
-                    if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)))
-                        alert("Invalid Email")
-                else if(pno!="")
-                    if(!(/^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$/.test(pno)))
-                        alert("Invalid Phone Number")
                 else if(pass.length()<8)
                     alert("Password must have at least 8 characters")
             }

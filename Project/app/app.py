@@ -1,6 +1,6 @@
 from flask import Flask, flash, request, url_for, redirect, render_template, session, g
 from flask_bootstrap import Bootstrap
-from utils.ins_val_db import stu, teach, stu_val, teach_val, S_logval, T_logval, book_val, update
+from utils.ins_val_db import stu, teach, stu_val, teach_val, S_logval, T_logval, book_val, stu_update, teach_update
 from utils.del_val_db import stu_del, teach_del, book_del, teach_del_acc, stu_del_acc
 from utils.display import stu_display, teach_display, book_display, stu_history, teach_history, book_history
 from utils.display import stu_det, teach_det, avail_books, p_teach_history, p_stu_history
@@ -362,7 +362,8 @@ def stuupdate():
         user = session["user"]
         if request.method == "POST":
             req = request.form
-            status = update(req,session["user"],"s")
+            status = stu_update(req,session["user"])
+            print(status)
             if status == "Success":
                 return redirect("/studentprofile")
             else:
@@ -378,7 +379,7 @@ def teachupdate():
         user = session["user"]
         if request.method == "POST":
             req = request.form
-            status = update(req,session["user"],"t")
+            status = teach_update(req,session["user"])
             if status == "Success":
                 return redirect("/teacherprofile")
             else:
