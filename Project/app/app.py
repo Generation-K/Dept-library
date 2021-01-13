@@ -1,5 +1,5 @@
 from flask import Flask, flash, request, url_for, redirect, render_template, session, g
-from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 from utils.ins_val_db import stu, teach, stu_val, teach_val, S_logval, T_logval, book_val, stu_update, teach_update
 from utils.del_val_db import stu_del, teach_del, book_del, teach_del_acc, stu_del_acc
 from utils.display import stu_display, teach_display, book_display, stu_history, teach_history, book_history

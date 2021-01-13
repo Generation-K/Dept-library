@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
         <link rel="icon" href="{{ url_for('static', filename='img/gat_logo.png') }}">
-        <title>Student History</title>
+        <title>Teacher History</title>
         <style>
             body
             {
@@ -53,7 +53,7 @@
         </center>
         <script>
             function back(){
-                location.href = "{{ url_for('studentprofile') }}"
+                location.href = "{{ url_for('teacherprofile') }}"
             }
         </script>
 
