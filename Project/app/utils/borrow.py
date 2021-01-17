@@ -20,15 +20,25 @@ def admin_stu_borrow(req):
     elif not req["due"]:
         return "Enter Due Date"
     else:
-        sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES (%s,%s,%s,%s,%s)"
-        val1 = (req["usn"],req["bookid"],req["dob"],req["due"],"s")
-        mycursor.execute(sql1,val1)
-        db.commit()
-        sql2 = "UPDATE books SET avail=0 WHERE id=%s"
-        val2 = (req["bookid"],)
-        mycursor.execute(sql2,val2)
-        db.commit()
-        return "Success"
+        data = list()
+        sql = "SELECT avail FROM books WHERE id=%s"
+        val = (req["bookid"],)
+        mycursor.execute(sql,val)
+        data = mycursor.fetchall()
+        if not data:
+            return "Book does not exist"
+        elif data[0][0] == 0:
+            return "Book Unavailable"
+        else:
+            sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES (%s,%s,%s,%s,%s)"
+            val1 = (req["usn"],req["bookid"],req["dob"],req["due"],"s")
+            mycursor.execute(sql1,val1)
+            db.commit()
+            sql2 = "UPDATE books SET avail=0 WHERE id=%s"
+            val2 = (req["bookid"],)
+            mycursor.execute(sql2,val2)
+            db.commit()
+            return "Success"
 
 def admin_teach_borrow(req):
     if not req["emp"]:
@@ -40,15 +50,25 @@ def admin_teach_borrow(req):
     elif not req["due"]:
         return "Enter Due Date"
     else:
-        sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES (%s,%s,%s,%s,%s)"
-        val1 = (req["emp"],req["bookid"],req["dob"],req["due"],"t")
-        mycursor.execute(sql1,val1)
-        db.commit()
-        sql2 = "UPDATE books SET avail=0 WHERE id=%s"
-        val2 = (req["bookid"],)
-        mycursor.execute(sql2,val2)
-        db.commit()
-        return "Success"
+        data = list()
+        sql = "SELECT avail FROM books WHERE id=%s"
+        val = (req["bookid"],)
+        mycursor.execute(sql,val)
+        data = mycursor.fetchall()
+        if not data:
+            return "Book does not exist"
+        elif data[0][0] == 0:
+            return "Book Unavailable"
+        else:
+            sql1 = "INSERT INTO borrow (br_id, b_id, dob, due, s_t) VALUES (%s,%s,%s,%s,%s)"
+            val1 = (req["emp"],req["bookid"],req["dob"],req["due"],"t")
+            mycursor.execute(sql1,val1)
+            db.commit()
+            sql2 = "UPDATE books SET avail=0 WHERE id=%s"
+            val2 = (req["bookid"],)
+            mycursor.execute(sql2,val2)
+            db.commit()
+            return "Success"
 
 def returnbook(req):
     if not req["code"]:
